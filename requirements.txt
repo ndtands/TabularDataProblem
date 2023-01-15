@@ -1,0 +1,4 @@
+tensorflow
+transformers==4.25.1
+spacy==3.4.4
+tabtransformertf==0.0.8
