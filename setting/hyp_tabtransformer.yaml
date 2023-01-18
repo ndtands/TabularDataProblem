@@ -1,0 +1,16 @@
+embedding_dim: 32
+out_dim: 1
+out_activation: 'sigmoid'
+depth: 3
+heads: 6
+attn_dropout: 0.2
+ff_dropout: 0.2
+mlp_hidden_factors:
+  - 2
+  - 4
+use_column_embedding: True
+
+patience: 10
+epochs: 100
+lr: 0.0001
+weight_decay: 0.0001
