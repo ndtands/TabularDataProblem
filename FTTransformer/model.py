@@ -23,22 +23,59 @@ class FT_Transformer():
                 hyperparameters: dict, 
                 **kwargs) -> None:
         self.hyp = hyperparameters
-        ft_linear_encoder = FTTransformerEncoder(
-            numerical_features = n_feature,
-            categorical_features = c_feature,
-            numerical_data = X_train[NUMERIC_FEATURES].values,
-            categorical_data = X_train[CATEGORICAL_FEATURES].values,
-            y = None,
-            numerical_embedding_type=self.hyp['numerical_embedding_type'],
-            embedding_dim=self.hyp['embedding_dim'],
-            depth=self.hyp['depth'],
-            heads=self.hyp['heads'],
-            attn_dropout=self.hyp['attn_dropout'],
-            ff_dropout=self.hyp['ff_dropout'],
-            explainable=self.hyp['explainable']
-        )
+        type_enc = self.hyp['numerical_embedding_type']
+        if type_enc == 'linear':
+            ft_encoder = FTTransformerEncoder(
+                numerical_features = n_feature,
+                categorical_features = c_feature,
+                numerical_data = X_train[NUMERIC_FEATURES].values,
+                categorical_data = X_train[CATEGORICAL_FEATURES].values,
+                y = None,
+                numerical_embedding_type=self.hyp['numerical_embedding_type'],
+                embedding_dim=self.hyp['embedding_dim'],
+                depth=self.hyp['depth'],
+                heads=self.hyp['heads'],
+                attn_dropout=self.hyp['attn_dropout'],
+                ff_dropout=self.hyp['ff_dropout'],
+                explainable=self.hyp['explainable']
+            )
+        elif type_enc == 'periodic' or type_enc == 'ple':
+            ft_encoder = FTTransformerEncoder(
+                numerical_features = n_feature,
+                categorical_features = c_feature,
+                numerical_data = X_train[NUMERIC_FEATURES].values,
+                categorical_data = X_train[CATEGORICAL_FEATURES].values,
+                y = None,
+                numerical_embedding_type=self.hyp['numerical_embedding_type'],
+                numerical_bins=self.hyp['numerical_bins'],
+                embedding_dim=self.hyp['embedding_dim'],
+                depth=self.hyp['depth'],
+                heads=self.hyp['heads'],
+                attn_dropout=self.hyp['attn_dropout'],
+                ff_dropout=self.hyp['ff_dropout'],
+                explainable=self.hyp['explainable']
+            )
+        elif self.hyp['numerical_embedding_type'] == 'plet':
+            ft_encoder = FTTransformerEncoder(
+                numerical_features = n_feature,
+                categorical_features = c_feature,
+                numerical_data = X_train[NUMERIC_FEATURES].values,
+                categorical_data = X_train[CATEGORICAL_FEATURES].values,
+                y = None,
+                task=self.hyp['task'],
+                numerical_embedding_type='ple',
+                numerical_bins=self.hyp['numerical_bins'],
+                embedding_dim=self.hyp['embedding_dim'],
+                depth=self.hyp['depth'],
+                heads=self.hyp['heads'],
+                attn_dropout=self.hyp['attn_dropout'],
+                ff_dropout=self.hyp['ff_dropout'],
+                ple_tree_params=self.hyp['ple_tree_params'],             
+                explainable=self.hyp['explainable']
+            )
+            
         self.model = FTTransformer(
-                encoder=ft_linear_encoder,
+                encoder=ft_encoder,
                 out_dim=self.hyp['out_dim'],
                 out_activation=self.hyp['out_activation'],
             )
