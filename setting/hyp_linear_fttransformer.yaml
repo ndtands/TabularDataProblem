@@ -6,6 +6,7 @@ heads: 6
 attn_dropout: 0.2
 ff_dropout: 0.2
 explainable: True
+numerical_embedding_type: 'linear'
 
 patience: 10
 epochs: 100
