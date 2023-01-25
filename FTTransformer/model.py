@@ -29,7 +29,7 @@ class FT_Transformer():
             numerical_data = X_train[NUMERIC_FEATURES].values,
             categorical_data = X_train[CATEGORICAL_FEATURES].values,
             y = None,
-            numerical_embedding_type='linear',
+            numerical_embedding_type=self.hyp['numerical_embedding_type'],
             embedding_dim=self.hyp['embedding_dim'],
             depth=self.hyp['depth'],
             heads=self.hyp['heads'],
@@ -49,7 +49,7 @@ class FT_Transformer():
             test_data: pd.DataFrame=None, 
         ):
 
-        name = f"fft_transform_{time.time()}"
+        name = f"{self.hyp['numerical_embedding_type']}_fft_transform_{time.time()}"
         # DF to dataset
         train_dataset = df_to_dataset(train_data[FEATURES + [LABEL]], LABEL)
         val_dataset = df_to_dataset(val_data[FEATURES + [LABEL]], LABEL, shuffle=False)  # No shuffle
