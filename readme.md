@@ -34,10 +34,11 @@ Target binning involves using the decision tree algorithm to assist in construct
 
 
 Evaluation models in testing dataset
-| Type model      | is_explainable| ROC AUC | PR AUC |  ACC | F1-score | Acc Possitive |
+| Type model      | is_explainable| ROC AUC | PR AUC |  ACC | F1-score | F1-Possitive |
 | ----------- | ----------- | ----------- | ----------- | ----------- | ----------- |----------- |
 | TabTransformer (No numerical Embedding)      | No |0.8962       | 0.7361 | 0.8479 | 0.7653| 0.63 |
 | Linear numerical Embedding   | Yes |0.9001       | 0.7393 | 0.8485 | 0.7796| 0.66 |
 | Periodic numerical Embedding | Yes |0.8925       | 0.7275 | 0.8443 | 0.765 | 0.77 |
 | Piecewise Linear Encoding (Quantile Binning)   | Yes |0.9117       | 0.7879 | 0.86 | 0.7942| 0.79  |
 | Target Binning Approach   | yes |0.9122       | 0.7864 |  0.8592 | 0.7905| 0.79 |
+| Catboost   | yes |       |  |   | 0.81| 0.70 |
