@@ -41,4 +41,10 @@ Evaluation models in testing dataset
 | Periodic numerical Embedding | Yes |0.8925       | 0.7275 | 0.8443 | 0.765 | 0.77 |
 | Piecewise Linear Encoding (Quantile Binning)   | Yes |0.9117       | 0.7879 | 0.86 | 0.7942| 0.79  |
 | Target Binning Approach   | yes |0.9122       | 0.7864 |  0.8592 | 0.7905| 0.79 |
-| Catboost   | yes |       |  |   | 0.81| 0.70 |
+| Catboost (Tuned)  | yes |       |  |   | 0.81| 0.71 |
+| ExtraTrees (Tuned)  | yes |       |  |   | 0.77| 0.65 |
+| Bagging (Tuned)  | yes |       |  |   | 0.78| 0.66 |
+| Adaboost (Tuned)  | yes |       |  |   | 0.79| 0.67 |
+| Gradient (Tuned)  | yes |       |  |   | 0.81| 0.71 |
+| Linear Discriminant Analysis (Bayes’ rule)  | No |       |  |   | 0.72| 0.54 |
+| Quadratic Discriminant Analysis (Bayes’ rule)  | No |       |  |   | 0.69| 0.50 |
